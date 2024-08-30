@@ -21,6 +21,7 @@ template <typename X>
 void merge(X array[], int start, int mid, int end) {
 
     //create two new arrays
+    //and calculate their sizes
     X left[mid - start];
     int leftSize = sizeof(left) / sizeof(left[0]);
     X right[end - (mid - 1)];
@@ -50,20 +51,27 @@ void merge(X array[], int start, int mid, int end) {
 
 }
 
+template <typename Y>
+void mergeSort(Y array[], int start, int end) {
+
+//calculate the midpoint of the array 
+int mid = (start + end) / 2;
+
+//mid is passed into merge
+merge(array, start, mid, end);
+
+}
+
 int main() {
 
 //my first array of integers
 int intArray[] = {1,2,7,3,5,6,9,8,10};
 int intSize = sizeof(intArray) / sizeof(intArray[0]);
-//cout << intSize;
-merge(intArray, 0, 4, intSize - 1);
-//printArray(intArray, intSize); //testing print function
+mergeSort(intArray, 0, intSize - 1);
 
 //an array of doubles
 double doubleArray[] = {9, -2, 5, 12, -3.14, 7, 1.922, 0, -0.6};
 int doubleSize = sizeof(doubleArray) / sizeof(doubleArray[0]);
-//printArray(doubleArray, doubleSize);
-merge(doubleArray, 0, 4, doubleSize - 1);
 
 
 }
